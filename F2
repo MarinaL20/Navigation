@@ -1,0 +1,92 @@
+package com.example.navigation
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.navigation.databinding.FragmentBlank1Binding
+import com.example.navigation.databinding.FragmentBlank2Binding
+
+
+class BlankFragment2 : Fragment() {
+    private lateinit var  binding: FragmentBlank2Binding
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        //return inflater.inflate(R.layout.fragment_blank2, container, false)
+        binding = FragmentBlank2Binding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //val recyclerView: RecyclerView = binding.recyclerView
+        /*
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        val testData = listOf(
+            "CAT",
+            "DOG"
+        )
+        val adapter = Picturee(testData)
+        binding.recyclerView.adapter = adapter*/
+
+        //приймаємо номер статті
+        val index = arguments?.getString("MyArg1")
+        val a = Integer.parseInt(index)
+
+        val imageArray:Array<String> = arrayOf(
+            "https://nashzelenyimir.ru/wp-content/uploads/2017/01/%D0%93%D0%B5%D0%BF%D0%B0%D1%80%D0%B4-%D1%84%D0%BE%D1%82%D0%BE.jpeg",
+            "https://zaxid.net/resources/photos/news/1200x675_DIR/202111/1529842.jpg?202210124514",
+            "https://versiya.info/uploads/posts/2018-05/1525946418_gus.jpeg"
+        )
+        val imageArrayComics:Array<String> = arrayOf(
+            "https://i.imgur.com/Xqq6gIl.jpeg",//1
+            "https://i.imgur.com/Wi2ZJan.jpeg",//2
+            "https://i.imgur.com/j8ge21L.jpeg",//3
+            "https://i.imgur.com/Jer9xZC.jpeg", //4
+            "https://i.imgur.com/3f4Rg39.jpeg",//5
+            "https://i.imgur.com/qsFn01E.jpeg",//6
+            "https://i.imgur.com/WPNq5fI.jpeg",//7
+        )
+        val textArray: Array<String> = arrayOf(
+            requireContext().getString(R.string.T1),
+            requireContext().getString(R.string.T2),
+            requireContext().getString(R.string.T3),
+        )
+        val zagtextArray: Array<String> = arrayOf(
+            requireContext().getString(R.string.text1),
+            requireContext().getString(R.string.text2),
+            requireContext().getString(R.string.text3),
+        )
+
+        val image = binding.imageView4
+        Glide.with(this)
+            .load(imageArray[a])
+            .into(image)
+        binding.text0Fr2.text = zagtextArray[a]
+        binding.textFr2.text = textArray[a]
+
+        if (a==2){
+            var b=0
+            binding.imageView4.setOnClickListener{
+                Glide.with(this)
+                    .load(imageArrayComics[b])
+                    .into(image)
+                val c = b+1
+                binding.textFr2.text = c.toString()
+                b = b+1
+                if (b==7){b=0}
+            }
+
+        }
+    }
+}
