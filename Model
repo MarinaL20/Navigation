@@ -1,0 +1,16 @@
+package com.example.navigation
+
+import android.content.Context
+
+data class AnimalModel (val title: String, val description:String, val image: String){
+    companion object {
+        fun createDefoulData(context:Context):List<AnimalModel>{
+            //логіка списку
+            val list = ArrayList<AnimalModel>()
+            list.add(
+                AnimalModel(context.getString(R.string.text1), context.getString(R.string.context1), "https://versiya.info/uploads/posts/2018-05/1525946418_gus.jpeg" )
+            )
+            return list
+        }
+    }
+}
